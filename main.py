@@ -25,7 +25,8 @@ def main():
 
     print(f"\n👤 Авторы ({len(article.authors)}):")
     for a in article.authors:
-        print(f"   • {a.initials_name}  |  {a.email}  |  {a.affiliation[:60]}...")
+        affil_ids = ", ".join(str(x) for x in a.affiliations)
+        print(f"   • {a.initials_name}  |  {a.email}  |  affiliations: [{affil_ids}]")
 
     print(f"\n📝 Аннотация (RU, первые 200 симв.):")
     print(f"   {article.abstract.ru[:200]}..." if article.abstract.ru else "   ❌ не найдена")
@@ -36,7 +37,7 @@ def main():
 
     print(f"\n📚 Разделы ({len(article.sections)}):")
     for s in article.sections:
-        print(f"   [{s.level}] {s.title}  ({len(s.text)} симв. текста)")
+        print(f"   [{s.level}] {s.title}  ({len(s.blocks)} блоков)")
 
     print(f"\n🖼  Рисунки ({len(article.figures)}):")
     for f in article.figures:
@@ -48,8 +49,8 @@ def main():
 
     print(f"\n💰 Финансирование: {'да' if article.funding else 'нет'}")
 
-    print(f"\n⚠️  Предупреждения ({len(article.warnings)}):")
-    for w in article.warnings:
+    print(f"\n⚠️  Предупреждения ({len(article.source_warnings)}):")
+    for w in article.source_warnings:
         print(f"   ⚠️  {w}")
 
     os.makedirs("output", exist_ok=True)
