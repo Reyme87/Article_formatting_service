@@ -76,6 +76,8 @@ venv.bak/
 # VS Code
 .vscode/
 
+*.json
+
 # Operating System Files
 .DS_Store
 Thumbs.db
